@@ -1,0 +1,37 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.1.32407.343
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AdventOfCode", "AdventOfCode\AdventOfCode.csproj", "{D2469E11-C73D-4EAF-90F1-A486E9161DC7}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Shared", "Shared\Shared.csproj", "{F2A4A198-18F1-41E6-919E-856DCD7FE2F1}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ExampleDay", "ExampleDay\ExampleDay.csproj", "{0E4D0B51-35E7-42C8-87EC-3916F5D9D60A}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{D2469E11-C73D-4EAF-90F1-A486E9161DC7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D2469E11-C73D-4EAF-90F1-A486E9161DC7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D2469E11-C73D-4EAF-90F1-A486E9161DC7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D2469E11-C73D-4EAF-90F1-A486E9161DC7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F2A4A198-18F1-41E6-919E-856DCD7FE2F1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F2A4A198-18F1-41E6-919E-856DCD7FE2F1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F2A4A198-18F1-41E6-919E-856DCD7FE2F1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F2A4A198-18F1-41E6-919E-856DCD7FE2F1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0E4D0B51-35E7-42C8-87EC-3916F5D9D60A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0E4D0B51-35E7-42C8-87EC-3916F5D9D60A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0E4D0B51-35E7-42C8-87EC-3916F5D9D60A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0E4D0B51-35E7-42C8-87EC-3916F5D9D60A}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {F88895EF-D0A2-49AE-83AC-0205EF264612}
+	EndGlobalSection
+EndGlobal
