@@ -22,7 +22,7 @@ namespace Shared.AoC
         }
 
         protected abstract void AddInputFiles();
-        protected abstract object Solve(string input);
+        protected abstract object Solve(Shared.Input input);
 
         public void RunExamples()
         {
@@ -30,8 +30,8 @@ namespace Shared.AoC
             var i = 1;
             foreach (var (InputFilePath, ExpectedOutput) in _examples)
             {
-                var input = File.ReadAllText(InputFilePath);
-
+                var inputString = File.ReadAllText(InputFilePath);
+                var input = new Input(inputString);
                 WriteExampleHeader(i);
                 var stopWatch = Stopwatch.StartNew();
                 var result = Solve(input);
@@ -49,7 +49,8 @@ namespace Shared.AoC
         public void RunMain()
         {
             AddInputFiles();
-            var input = File.ReadAllText(_mainInputFile);
+            var inputString = File.ReadAllText(_mainInputFile);
+            var input = new Input(inputString);
 
             WriteMainHeader();
             var stopWatch = Stopwatch.StartNew();
@@ -87,8 +88,10 @@ namespace Shared.AoC
         {
             var head = $"   Solving main problem!   ";
             Console.WriteLine();
+            Console.WriteLine("------------------------------------------------");
             Console.WriteLine(head);
-            Console.WriteLine(head.Select(c => '-'));
+            Console.WriteLine("------------------------------------------------");
+            Console.WriteLine();
         }
 
         private void WriteMainFinished(string result, TimeSpan elapsed)

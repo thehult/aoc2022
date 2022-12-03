@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ExampleDay
+namespace Template
 {
     public class Part2 : AoCSolution
     {
@@ -18,16 +18,7 @@ namespace ExampleDay
 
         protected override object Solve(Input input)
         {
-            var res = 0;
-            for (var i = 1; i < input.NumberOfLines - 2; i++)
-            {
-                int a = input[i - 1] + input[i] + input[i + 1];
-                int b = input[i] + input[i + 1] + input[i + 2];
-
-                if (b > a)
-                    res++;
-            }
-            return res;
+            return 0;
         }
     }
 }
