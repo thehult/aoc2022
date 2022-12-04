@@ -14,7 +14,7 @@ namespace Shared
 
         public Line(string line)
         {
-            _line = line;
+            _line = line.Trim();
         }
 
         public string Read()
@@ -22,11 +22,11 @@ namespace Shared
             return _line;
         }
 
-        public string ReadToken()
+        public string ReadToken(char delimiter = ' ')
         {
             if (_lineIndex >= _line.Length)
                 throw new Exception("No more tokens.");
-            var end = _line.IndexOf(' ', _lineIndex);
+            var end = _line.IndexOf(delimiter, _lineIndex);
             if (end == -1)
                 end = _line.Length;
             var token = _line.Substring(_lineIndex, end - _lineIndex);
@@ -42,7 +42,7 @@ namespace Shared
         }
 
         public T Read<T>() => (T)Convert.ChangeType(Read(), typeof(T));
-        public T ReadToken<T>() => (T)Convert.ChangeType(ReadToken(), typeof(T));
+        public T ReadToken<T>(char delimiter = ' ') => (T)Convert.ChangeType(ReadToken(delimiter), typeof(T));
         public T ReadChar<T>() => (T)Convert.ChangeType(ReadChar(), typeof(T));
 
         public bool IsBlank() => string.IsNullOrEmpty(_line);
