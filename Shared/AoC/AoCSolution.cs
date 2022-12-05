@@ -12,6 +12,8 @@ namespace Shared.AoC
         private string _mainInputFile = "";
         private List<(string InputFilePath, string ExpectedOutput)> _examples = new List<(string InputFilePath, string ExpectedOutput)>();
 
+        private Stopwatch _stopWatch = new Stopwatch();
+
         protected void AddExample(string inputFilePath, string expectedOutput)
         {
             _examples.Add((inputFilePath, expectedOutput));
@@ -23,6 +25,10 @@ namespace Shared.AoC
 
         protected abstract void AddInputFiles();
         protected abstract object Solve(Shared.Input input);
+        protected void LogTime(string id)
+        {
+            Console.WriteLine($"Time at '{id}': {_stopWatch.Elapsed}");
+        }
 
         public void RunExamples()
         {
@@ -33,14 +39,14 @@ namespace Shared.AoC
                 var inputString = File.ReadAllText(InputFilePath);
                 var input = new Input(inputString);
                 WriteExampleHeader(i);
-                var stopWatch = Stopwatch.StartNew();
+                _stopWatch.Restart();
                 var result = Solve(input);
-                stopWatch.Stop();
+                _stopWatch.Stop();
                 var resultAsString = $"{result}";
                 if (resultAsString != ExpectedOutput)
                     WriteExampleFail(resultAsString, ExpectedOutput);
                 else
-                    WriteExampleSuccess(stopWatch.Elapsed);
+                    WriteExampleSuccess(_stopWatch.Elapsed);
 
                 i++;
             }
@@ -53,10 +59,10 @@ namespace Shared.AoC
             var input = new Input(inputString);
 
             WriteMainHeader();
-            var stopWatch = Stopwatch.StartNew();
+            _stopWatch.Restart();
             var result = Solve(input);
-            stopWatch.Stop();
-            WriteMainFinished($"{result}", stopWatch.Elapsed);
+            _stopWatch.Stop();
+            WriteMainFinished($"{result}", _stopWatch.Elapsed);
         }
 
         private void WriteExampleHeader(int exampleNumber)

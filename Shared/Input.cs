@@ -11,7 +11,7 @@ namespace Shared
         public IList<Line> Lines;
         public Line this[int index] => Lines[index];
 
-        public Input(string input) : this(input.Trim().Split(Environment.NewLine))
+        public Input(string input) : this(input.Split(Environment.NewLine))
         { }
 
         public Input(string[] lines)

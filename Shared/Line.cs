@@ -14,7 +14,7 @@ namespace Shared
 
         public Line(string line)
         {
-            _line = line.Trim();
+            _line = line;
         }
 
         public string Read()
@@ -34,16 +34,38 @@ namespace Shared
             return token;
         }
 
-        public char ReadChar()
+        public string[] ReadTokens(char delimiter = ' ')
         {
-            if (_lineIndex >= _line.Length)
+            return _line.Split(delimiter, StringSplitOptions.RemoveEmptyEntries | StringSplitOptions.TrimEntries);
+        }
+
+        public T[] ReadTokens<T>(char delimiter = ' ')
+        {
+            var ss = _line.Split(delimiter, StringSplitOptions.RemoveEmptyEntries | StringSplitOptions.TrimEntries);
+            List<T> values = new List<T>();
+            foreach(var sss in ss)
+            {
+                try
+                {
+                    var t = (T)Convert.ChangeType(sss, typeof(T));
+                    values.Add(t);
+                } catch { }
+            }
+            return values.ToArray();
+        }
+
+        public char ReadChar() => ReadChar(_lineIndex++);
+        public char ReadChar(int i)
+        {
+            if(i >= _line.Length)
                 throw new Exception("No more characters.");
-            return _line[_lineIndex++];
+            return _line[i];
         }
 
         public T Read<T>() => (T)Convert.ChangeType(Read(), typeof(T));
         public T ReadToken<T>(char delimiter = ' ') => (T)Convert.ChangeType(ReadToken(delimiter), typeof(T));
         public T ReadChar<T>() => (T)Convert.ChangeType(ReadChar(), typeof(T));
+        public T ReadChar<T>(int i) => (T)Convert.ChangeType(ReadChar(i), typeof(T));
 
         public bool IsBlank() => string.IsNullOrEmpty(_line);
         public bool HasNextToken() => _line.IndexOf(' ', _lineIndex) >= 0;
@@ -64,5 +86,6 @@ namespace Shared
         public static implicit operator int(Line l) => int.Parse(l._line);
         public static implicit operator double(Line l) => double.Parse(l._line);
         public static explicit operator string(Line l) => l._line;
+
     }
 }
