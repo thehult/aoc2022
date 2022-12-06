@@ -1,5 +1,7 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -39,19 +41,28 @@ namespace Shared
             return _line.Split(delimiter, StringSplitOptions.RemoveEmptyEntries | StringSplitOptions.TrimEntries);
         }
 
-        public T[] ReadTokens<T>(char delimiter = ' ')
+        private delegate bool TypeTryParse<T>(string s, out T value);
+        private T[] TryParseTokens<T>(TypeTryParse<T> parseFunc, char delimiter = ' ')
         {
             var ss = _line.Split(delimiter, StringSplitOptions.RemoveEmptyEntries | StringSplitOptions.TrimEntries);
             List<T> values = new List<T>();
-            foreach(var sss in ss)
+            foreach (var sss in ss)
             {
-                try
+                if (parseFunc(sss, out var v))
                 {
-                    var t = (T)Convert.ChangeType(sss, typeof(T));
-                    values.Add(t);
-                } catch { }
+                    values.Add(v!);
+                }
             }
             return values.ToArray();
+        }
+        public T[] ReadTokens<T>(char delimiter = ' ')
+        {
+            if (typeof(T) == typeof(int))
+                return (TryParseTokens<int>(int.TryParse, delimiter) as T[])!;
+            else if (typeof(T) == typeof(double))
+                return (TryParseTokens<double>(double.TryParse, delimiter) as T[])!;
+
+            throw new NotImplementedException("Type not implemented.");
         }
 
         public char ReadChar() => ReadChar(_lineIndex++);
