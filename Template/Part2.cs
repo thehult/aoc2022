@@ -12,8 +12,8 @@ namespace Template
     {
         protected override void AddInputFiles()
         {
-            AddMainInput("Part2Inputs/Main.txt");
-            AddExample("Part2Inputs/Example1.txt", "5");
+            AddMainInput("Template/Main.txt");
+            AddExample("Template/Example1.txt", "5");
         }
 
         protected override object Solve(Input input)
