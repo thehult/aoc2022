@@ -12,8 +12,8 @@ namespace Day2
     {
         protected override void AddInputFiles()
         {
-            AddMainInput("Part1Inputs/Main.txt");
-            AddExample("Part1Inputs/Example1.txt", "15");
+            AddMainInput("Day2/Main.txt");
+            AddExample("Day2/Example1.txt", "15");
         }
 
         Dictionary<string, int> scores = new()

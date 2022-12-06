@@ -12,8 +12,8 @@ namespace Day4
     {
         protected override void AddInputFiles()
         {
-            AddMainInput("Part1Inputs/Main.txt");
-            AddExample("Part1Inputs/Example1.txt", "2");
+            AddMainInput("Day4/Main.txt");
+            AddExample("Day4/Example1.txt", "2");
         }
 
         protected override object Solve(Input input)

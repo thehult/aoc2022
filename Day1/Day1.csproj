@@ -11,16 +11,10 @@
   </ItemGroup>
 
   <ItemGroup>
-    <None Update="Part1Inputs\Example1.txt">
+    <None Update="Day1\Example1.txt">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Update="Part1Inputs\Main.txt">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Update="Part2Inputs\Example1.txt">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Update="Part2Inputs\Main.txt">
+    <None Update="Day1\Main.txt">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
   </ItemGroup>

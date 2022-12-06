@@ -12,8 +12,8 @@ namespace Day3
     {
         protected override void AddInputFiles()
         {
-            AddMainInput("Part1Inputs/Main.txt");
-            AddExample("Part1Inputs/Example1.txt", "157");
+            AddMainInput("Day3/Main.txt");
+            AddExample("Day3/Example1.txt", "157");
         }
 
         int Priority(char c)
