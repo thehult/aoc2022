@@ -38,13 +38,13 @@ namespace Shared
 
         public string[] ReadTokens(char delimiter = ' ')
         {
-            return _line.Split(delimiter, StringSplitOptions.RemoveEmptyEntries | StringSplitOptions.TrimEntries);
+            return _line.Substring(_lineIndex).Split(delimiter, StringSplitOptions.RemoveEmptyEntries | StringSplitOptions.TrimEntries);
         }
 
         private delegate bool TypeTryParse<T>(string s, out T value);
         private T[] TryParseTokens<T>(TypeTryParse<T> parseFunc, char delimiter = ' ')
         {
-            var ss = _line.Split(delimiter, StringSplitOptions.RemoveEmptyEntries | StringSplitOptions.TrimEntries);
+            var ss = _line.Substring(_lineIndex).Split(delimiter, StringSplitOptions.RemoveEmptyEntries | StringSplitOptions.TrimEntries);
             List<T> values = new List<T>();
             foreach (var sss in ss)
             {
@@ -79,7 +79,7 @@ namespace Shared
         public T ReadChar<T>(int i) => (T)Convert.ChangeType(ReadChar(i), typeof(T));
 
         public bool IsBlank() => string.IsNullOrEmpty(_line);
-        public bool HasNextToken() => _line.IndexOf(' ', _lineIndex) >= 0;
+        public bool HasNextToken() => _lineIndex < _line.Length;
         public bool HasNextChar() => _lineIndex < _line.Length;
 
         public override string ToString()
@@ -91,6 +91,8 @@ namespace Shared
         public string Substring(int startIndex, int length) => _line.Substring(startIndex, length);
         public bool Contains(char c) => _line.Contains(c);
         public bool Contains(string s) => _line.Contains(s);
+        public bool StartsWith(char c) => _line.StartsWith(c);
+        public bool StartsWith(string s) => _line.StartsWith(s);
 
         public int Length => _line.Length;
 
