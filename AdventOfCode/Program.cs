@@ -1,7 +1,7 @@
 ﻿using Shared.AoC;
 
-var DAY = 7;
-var PART = 2;
+var DAY = 9;
+var PART = 1;
 var INPUTS = AoCInput.Both;
 
 
