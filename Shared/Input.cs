@@ -20,6 +20,12 @@ namespace Shared
             Lines = lines.Select(l => new Line(l)).ToList();
         }
 
+        public Line GetLine()
+        {
+            if (_lineIndex > NumberOfLines - 1)
+                throw new Exception("No more lines!");
+            return Lines[_lineIndex++];
+        }
         public string ReadLine()
         {
             if (_lineIndex > NumberOfLines - 1)
