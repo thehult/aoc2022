@@ -1,8 +1,8 @@
 ﻿using Shared.AoC;
 
-var DAY = 8;
-var PART = 2;
-var INPUTS = AoCInput.Main;
+var DAY = 9;
+var PART = 1;
+var INPUTS = AoCInput.Both;
 
 
 AoCSolutionRunner.Run(DAY, PART, INPUTS);
