@@ -14,6 +14,9 @@ namespace Shared
 
         private int _lineIndex = 0;
 
+        public char this[int index] => _line[index];
+
+
         public Line(string line)
         {
             _line = line;
