@@ -1,6 +1,6 @@
 ﻿using Shared.AoC;
 
-var DAY = 10;
+var DAY = 11;
 var PART = 2;
 var INPUTS = AoCInput.Main;
 

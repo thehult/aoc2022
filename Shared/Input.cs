@@ -7,6 +7,7 @@ namespace Shared
         private readonly List<string> _lines;
         private int _lineIndex = 0;
         public int NumberOfLines => _lines.Count;
+        public bool HasMoreLines => _lineIndex < NumberOfLines;
 
         public IList<Line> Lines;
         public Line this[int index] => Lines[index];
@@ -22,20 +23,20 @@ namespace Shared
 
         public Line GetLine()
         {
-            if (_lineIndex > NumberOfLines - 1)
+            if (!HasMoreLines)
                 throw new Exception("No more lines!");
             return Lines[_lineIndex++];
         }
         public string ReadLine()
         {
-            if (_lineIndex > NumberOfLines - 1)
+            if (!HasMoreLines)
                 throw new Exception("No more lines!");
             return _lines[_lineIndex++];
         }
 
         public T ReadLine<T>()
         {
-            if (_lineIndex > NumberOfLines - 1)
+            if (!HasMoreLines)
                 throw new Exception("No more lines!");
             return (T)Convert.ChangeType(_lines[_lineIndex++], typeof(T));
         }

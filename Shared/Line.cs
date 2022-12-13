@@ -39,17 +39,30 @@ namespace Shared
             return token;
         }
 
-        public string[] ReadTokens(char delimiter = ' ')
+        private string[] Split(char delimiter)
         {
             return _line.Substring(_lineIndex).Split(delimiter, StringSplitOptions.RemoveEmptyEntries | StringSplitOptions.TrimEntries);
         }
+        private string[] Split(char[] delimiters)
+        {
+            return _line.Substring(_lineIndex).Split(delimiters, StringSplitOptions.RemoveEmptyEntries | StringSplitOptions.TrimEntries);
+        }
+
+        public string[] ReadTokens(char delimiter = ' ')
+        {
+            return Split(delimiter);
+        }
+
+        public string[] ReadTokens(char[] delimiters)
+        {
+            return Split(delimiters);
+        }
 
         private delegate bool TypeTryParse<T>(string s, out T value);
-        private T[] TryParseTokens<T>(TypeTryParse<T> parseFunc, char delimiter = ' ')
+        private T[] TryParseTokens<T>(TypeTryParse<T> parseFunc, string[] tokens)
         {
-            var ss = _line.Substring(_lineIndex).Split(delimiter, StringSplitOptions.RemoveEmptyEntries | StringSplitOptions.TrimEntries);
             List<T> values = new List<T>();
-            foreach (var sss in ss)
+            foreach (var sss in tokens)
             {
                 if (parseFunc(sss, out var v))
                 {
@@ -58,14 +71,26 @@ namespace Shared
             }
             return values.ToArray();
         }
-        public T[] ReadTokens<T>(char delimiter = ' ')
+        private T[] TryParseTokens<T>(string[] tokens)
         {
             if (typeof(T) == typeof(int))
-                return (TryParseTokens<int>(int.TryParse, delimiter) as T[])!;
+                return (TryParseTokens<int>(int.TryParse, tokens) as T[])!;
             else if (typeof(T) == typeof(double))
-                return (TryParseTokens<double>(double.TryParse, delimiter) as T[])!;
+                return (TryParseTokens<double>(double.TryParse, tokens) as T[])!;
+            else if (typeof(T) == typeof(ulong))
+                return (TryParseTokens<ulong>(ulong.TryParse, tokens) as T[])!;
 
             throw new NotImplementedException("Type not implemented.");
+        }
+
+        public T[] ReadTokens<T>(char delimiter = ' ')
+        {
+            return TryParseTokens<T>(Split(delimiter));
+
+        }
+        public T[] ReadTokens<T>(char[] delimiters)
+        { 
+            return TryParseTokens<T>(Split(delimiters));
         }
 
         public char ReadChar() => ReadChar(_lineIndex++);
