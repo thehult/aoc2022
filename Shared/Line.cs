@@ -93,6 +93,7 @@ namespace Shared
             return TryParseTokens<T>(Split(delimiters));
         }
 
+        public char PeekChar() => ReadChar(_lineIndex);
         public char ReadChar() => ReadChar(_lineIndex++);
         public char ReadChar(int i)
         {
@@ -100,6 +101,7 @@ namespace Shared
                 throw new Exception("No more characters.");
             return _line[i];
         }
+
 
         public T Read<T>() => (T)Convert.ChangeType(Read(), typeof(T));
         public T ReadToken<T>(char delimiter = ' ') => (T)Convert.ChangeType(ReadToken(delimiter), typeof(T));
