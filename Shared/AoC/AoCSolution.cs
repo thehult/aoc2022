@@ -56,7 +56,7 @@ namespace Shared.AoC
         {
             AddInputFiles();
             var inputString = File.ReadAllText(_mainInputFile);
-            var input = new Input(inputString);
+            var input = new Input(inputString) { IsMain = true };
 
             WriteMainHeader();
             _stopWatch.Restart();

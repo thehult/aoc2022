@@ -15,6 +15,8 @@ namespace Shared
         public Input(string input) : this(input.Split(Environment.NewLine))
         { }
 
+        public bool IsMain { get; init; } = false;
+
         public Input(string[] lines)
         {
             _lines = new List<string>(lines);
